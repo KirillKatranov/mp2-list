@@ -12,17 +12,21 @@ struct Node
   Node* next;
   // здесь могут быть конструкторы, методы, деструктор Node
 
-  Node(DataType d = 0, Node* n = NULL);
+  Node();
+  Node(DataType d, Node* n);
   Node(const Node& node2);
+  Node operator=(const Node& node2);
   bool operator==(const Node& node2) const;
+  ~Node() {}
 };
 
 class List
 {
   // любые поля
   Node* head;
+  Node* tail;
 public:
-  List();
+	List() { head = NULL; }
   List(const List& list2);
   List& operator=(const List& list2);
   ~List();
@@ -35,6 +39,7 @@ public:
   void Clean(); // удалить все звенья
   int GetSize(); // узнать число звеньев в списке
   Node* GetHead(); // получить указатель на первое звено списка
+  Node* GetTail(); 
 
   void Inverse(); // инвертировать список, т.е. звенья должны идти в обратном порядке
   List Merge(Node* node, const List& list2); // создать список3, добавив список2 в текущий список после указателя node  
